@@ -6,11 +6,11 @@
 #    By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/04 15:45:04 by uschmidt          #+#    #+#              #
-#    Updated: 2025/07/01 11:05:09 by uschmidt         ###   ########.fr        #
+#    Updated: 2025/07/01 11:10:47 by uschmidt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= fixed_00
+NAME		= fixed_01
 
 SRC_FOLDER	= ./
 OBJ_FOLDER	= build/
