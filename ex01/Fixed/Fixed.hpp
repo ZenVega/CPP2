@@ -10,8 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FIXED_HPP
+#define FIXED_HPP
+
 #include "../includes/CONSTANTS.hpp"
-#include <cmath>
+#include <sstream>
+#include <string>
 
 class Fixed
 {
@@ -24,10 +28,18 @@ public:
 	Fixed(const int value);
 	Fixed(const float value);
 	Fixed(const Fixed &other);
-	Fixed &operator=(const Fixed &other);
 	~Fixed();
+
+	Fixed  &operator=(const Fixed &other);
+	ostream operator<<(const Fixed &other);
+
 	int	  getRawBits(void) const;
 	void  setRawBits(int const raw);
 	int	  toInt(void) const;
 	float toFloat(void) const;
 };
+
+// the left hand side of the operator has to be a Class instance to be defined as a member function, or use the 'friend' keyword.
+// in order to use it on the right hand side, we need a non-member function. sice it cannot access private keys, we use the public toFloat function
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
+#endif

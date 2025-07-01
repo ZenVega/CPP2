@@ -25,7 +25,7 @@ Fixed::Fixed(const int value)
 
 Fixed::Fixed(const float value)
 {
-	_value = value;
+	_value = value * (1 << _fract_bits);
 }
 
 Fixed::Fixed(const Fixed &other)
@@ -67,5 +67,10 @@ int Fixed::toInt(void) const
 
 float Fixed::toFloat(void) const
 {
-	float ret = _value >> _fract_bits;
+	return (float)_value / (1 << _fract_bits);
+}
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
+{
+	out << fixed.toFloat();
+	return out;
 }

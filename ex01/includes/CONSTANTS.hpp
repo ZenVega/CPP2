@@ -13,11 +13,13 @@
 #ifndef CONSTANTS_HPP
 #define CONSTANTS_HPP
 
+#include <fstream>
 #include <iostream>
 
 using std::cin;
 using std::cout;
 using std::endl;
+using std::ostream;
 using std::string;
 
 #endif
