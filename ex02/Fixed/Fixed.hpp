@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:52:29 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/07/01 12:07:14 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/07/02 17:15:10 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #define FIXED_HPP
 
 #include "../includes/CONSTANTS.hpp"
+#include <cmath>
 #include <sstream>
 #include <string>
-// The 6 comparison operators: >, <, >=, <=, ==, and !=. +, -, *, and /.
+
 class Fixed
 {
 private:
@@ -37,6 +38,13 @@ public:
 	Fixed operator*(const Fixed &other) const;
 	Fixed operator/(const Fixed &other) const;
 
+	// pre increment will return its own ref
+	Fixed &operator++(void);
+	Fixed &operator--(void);
+	// post increment will actually return a new Fixed
+	Fixed operator++(int);
+	Fixed operator--(int);
+
 	bool operator<(const Fixed &other) const;
 	bool operator<=(const Fixed &other) const;
 	bool operator>(const Fixed &other) const;
@@ -45,6 +53,7 @@ public:
 
 	int	  getRawBits(void) const;
 	void  setRawBits(int const raw);
+	void  setFromFloat(float const raw);
 	int	  toInt(void) const;
 	float toFloat(void) const;
 };

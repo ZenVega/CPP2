@@ -24,7 +24,7 @@ Fixed::Fixed(const int value)
 
 Fixed::Fixed(const float value)
 {
-	_value = value * (1 << _fract_bits);
+	_value = roundf(value * (1 << _fract_bits));
 }
 
 Fixed::Fixed(const Fixed &other)
@@ -44,6 +44,13 @@ int Fixed::getRawBits(void) const
 void Fixed::setRawBits(int const raw)
 {
 	_value = raw;
+}
+
+void Fixed::setFromFloat(float const raw)
+{
+	// using roundf here actually reduces precision loss,
+	// since it calculates in decimals instead of just dropping them
+	_value = roundf(raw * (1 << _fract_bits));
 }
 
 int Fixed::toInt(void) const

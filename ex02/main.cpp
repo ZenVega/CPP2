@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:28:11 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/07/01 10:40:54 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/07/02 17:18:34 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int main(void)
 {
 	Fixed		a;
 	Fixed const b(Fixed(5.05f) * Fixed(2));
+	std::cout << "3 - 5 = " << (Fixed(3) - Fixed(5)) << endl;
 	std::cout << a << std::endl;
 	std::cout << ++a << std::endl;
 	std::cout << a << std::endl;
