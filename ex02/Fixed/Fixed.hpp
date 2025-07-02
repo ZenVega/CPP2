@@ -16,7 +16,7 @@
 #include "../includes/CONSTANTS.hpp"
 #include <sstream>
 #include <string>
-
+// The 6 comparison operators: >, <, >=, <=, ==, and !=. +, -, *, and /.
 class Fixed
 {
 private:
@@ -31,6 +31,17 @@ public:
 	~Fixed();
 
 	Fixed &operator=(const Fixed &other);
+	// These return a new Obj, no ref and don't mutuate this object
+	Fixed operator+(const Fixed &other) const;
+	Fixed operator-(const Fixed &other) const;
+	Fixed operator*(const Fixed &other) const;
+	Fixed operator/(const Fixed &other) const;
+
+	bool operator<(const Fixed &other) const;
+	bool operator<=(const Fixed &other) const;
+	bool operator>(const Fixed &other) const;
+	bool operator>=(const Fixed &other) const;
+	bool operator==(const Fixed &other) const;
 
 	int	  getRawBits(void) const;
 	void  setRawBits(int const raw);
@@ -38,10 +49,5 @@ public:
 	float toFloat(void) const;
 };
 
-// the left hand side of the operator has to be a Class instance to be defined as a member function, or use the 'friend' keyword.
-// in order to use it on the right hand side, we need a non-member function. sice it cannot access private keys, we use the public toFloat function
-// 1st argument, left hand side
-// 2nd argument, right hand side
-// return value is stream in order to chain more elements into it
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
 #endif
