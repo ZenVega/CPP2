@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:52:29 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/07/03 13:30:12 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/07/02 17:34:05 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 Fixed::Fixed(void)
 {
 	_value = 0;
-	cout << "Default constructor called" << endl;
 }
 
 Fixed::Fixed(const int value)
@@ -25,29 +24,18 @@ Fixed::Fixed(const int value)
 
 Fixed::Fixed(const float value)
 {
-	_value = value * (1 << _fract_bits);
+	// using roundf here actually reduces precision loss,
+	// since it calculates in decimals instead of just dropping them
+	_value = roundf(value * (1 << _fract_bits));
 }
 
 Fixed::Fixed(const Fixed &other)
 {
-	cout << "Copy constructor called" << endl;
 	*this = other;
-}
-
-Fixed &Fixed::operator=(const Fixed &other)
-{
-	if (this != &other)
-	{
-		_value = other.getRawBits();
-	}
-	std::cout << "Copy Assignment Operator Called!" << std::endl;
-
-	return (*this);
 }
 
 Fixed::~Fixed(void)
 {
-	cout << "Destructor called" << endl;
 }
 
 int Fixed::getRawBits(void) const
@@ -60,6 +48,11 @@ void Fixed::setRawBits(int const raw)
 	_value = raw;
 }
 
+void Fixed::setFromFloat(float const raw)
+{
+	_value = roundf(raw * (1 << _fract_bits));
+}
+
 int Fixed::toInt(void) const
 {
 	return _value >> _fract_bits;
@@ -70,8 +63,30 @@ float Fixed::toFloat(void) const
 	return (float)_value / (1 << _fract_bits);
 }
 
-std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
+Fixed &Fixed::min(Fixed &first, Fixed &second)
 {
-	out << fixed.toFloat();
-	return out;
+	if (first.toFloat() < second.toFloat())
+		return first;
+	return second;
+}
+
+const Fixed &Fixed::min(const Fixed &first, const Fixed &second)
+{
+	if (first.toFloat() < second.toFloat())
+		return first;
+	return second;
+}
+
+Fixed &Fixed::max(Fixed &first, Fixed &second)
+{
+	if (first.toFloat() > second.toFloat())
+		return first;
+	return second;
+}
+
+const Fixed &Fixed::max(const Fixed &first, const Fixed &second)
+{
+	if (first.toFloat() > second.toFloat())
+		return first;
+	return second;
 }
