@@ -56,7 +56,14 @@ public:
 	void  setFromFloat(float const raw);
 	int	  toInt(void) const;
 	float toFloat(void) const;
+
+	// static because it works unitialized
+	static Fixed	   &min(Fixed &first, Fixed &second);
+	const static Fixed &min(const Fixed &first, const Fixed &second);
+	static Fixed	   &max(Fixed &first, Fixed &second);
+	const static Fixed &max(const Fixed &first, const Fixed &second);
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
+
 #endif

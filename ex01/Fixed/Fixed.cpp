@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:52:29 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/07/01 12:08:42 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/07/02 17:34:05 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ float Fixed::toFloat(void) const
 {
 	return (float)_value / (1 << _fract_bits);
 }
+
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
 {
 	out << fixed.toFloat();

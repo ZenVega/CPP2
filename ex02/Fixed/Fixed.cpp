@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 09:52:29 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/07/01 12:08:42 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/07/02 17:34:05 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ Fixed::Fixed(const int value)
 
 Fixed::Fixed(const float value)
 {
+	// using roundf here actually reduces precision loss,
+	// since it calculates in decimals instead of just dropping them
 	_value = roundf(value * (1 << _fract_bits));
 }
 
@@ -48,8 +50,6 @@ void Fixed::setRawBits(int const raw)
 
 void Fixed::setFromFloat(float const raw)
 {
-	// using roundf here actually reduces precision loss,
-	// since it calculates in decimals instead of just dropping them
 	_value = roundf(raw * (1 << _fract_bits));
 }
 
@@ -61,4 +61,32 @@ int Fixed::toInt(void) const
 float Fixed::toFloat(void) const
 {
 	return (float)_value / (1 << _fract_bits);
+}
+
+Fixed &Fixed::min(Fixed &first, Fixed &second)
+{
+	if (first.toFloat() < second.toFloat())
+		return first;
+	return second;
+}
+
+const Fixed &Fixed::min(const Fixed &first, const Fixed &second)
+{
+	if (first.toFloat() < second.toFloat())
+		return first;
+	return second;
+}
+
+Fixed &Fixed::max(Fixed &first, Fixed &second)
+{
+	if (first.toFloat() > second.toFloat())
+		return first;
+	return second;
+}
+
+const Fixed &Fixed::max(const Fixed &first, const Fixed &second)
+{
+	if (first.toFloat() > second.toFloat())
+		return first;
+	return second;
 }
