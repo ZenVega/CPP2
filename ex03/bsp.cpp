@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 17:13:01 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/07/03 17:39:26 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/07/04 10:04:43 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,9 @@ int getCrossProd(Point a, Point b, Point p)
 
 bool bsp(Point const &a, Point const &b, Point const &c, Point const &point)
 {
-	Dir	  dir		  = UNDEFINED;
-	bool  intersect	  = false;
-	Point triangle[3] = {a, b, c};
-	float tempCP;
+	Dir			dir			= UNDEFINED;
+	const Point triangle[3] = {a, b, c};
+	float		tempCP;
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -59,4 +58,5 @@ bool bsp(Point const &a, Point const &b, Point const &c, Point const &point)
 		else if (tempCP == 0)
 			return false;
 	}
+	return true;
 }

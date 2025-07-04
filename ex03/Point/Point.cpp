@@ -6,26 +6,22 @@ Point::Point() :
 Point::Point(float x, float y) :
 	_x(Fixed(x)), _y(Fixed(y)) {}
 
-Point::Point(Point &other)
-{
-	*this = other;
-}
+Point::Point(const Point &other) :
+	_x(other._x), _y(other._y) {}
 
-Point &Point::operator=(Point &other)
+Point &Point::operator=(const Point &other)
 {
 	if (this != &other)
-	{
-		*this = other;
-	}
+		std::cerr << "Assignment operator called, but Point is immutable (const members)" << std::endl;
 	return *this;
 }
 
-float Point::getX()
+float Point::getX() const
 {
 	return _x.toFloat();
 }
 
-float Point::getY()
+float Point::getY() const
 {
 	return _y.toFloat();
 }

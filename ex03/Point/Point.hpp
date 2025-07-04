@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 12:47:23 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/07/03 17:29:04 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/07/04 10:22:54 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ private:
 public:
 	Point();
 	Point(float x, float y);
-	Point(Point &other);
-	Point &operator=(Point &other);
+	Point(const Point &other);
+	Point &operator=(const Point &other);
 
-	float getX();
-	float getY();
+	float getX() const;
+	float getY() const;
 };
 
 #endif
