@@ -35,6 +35,14 @@ int main(void)
 	std::cout << a++ << std::endl;
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
-	std::cout << Fixed::max(a, b) << std::endl;
+	std::cout << "the max val of a or b is " << Fixed::max(a, b) << std::endl;
+	if (a != b)
+		std::cout << "a unequal b" << std::endl;
+	if (a == b)
+		std::cout << "a equal b" << std::endl;
+	if (a >= b)
+		std::cout << "a greater b" << std::endl;
+	if (a <= b)
+		std::cout << "a smaller b" << std::endl;
 	return 0;
 }

@@ -50,6 +50,7 @@ public:
 	bool operator>(const Fixed &other) const;
 	bool operator>=(const Fixed &other) const;
 	bool operator==(const Fixed &other) const;
+	bool operator!=(const Fixed &other) const;
 
 	int	  getRawBits(void) const;
 	void  setRawBits(int const raw);
@@ -58,9 +59,9 @@ public:
 	float toFloat(void) const;
 
 	// static because it works unitialized
-	static Fixed	   &min(Fixed &first, Fixed &second);
+	static Fixed		 &min(Fixed &first, Fixed &second);
 	const static Fixed &min(const Fixed &first, const Fixed &second);
-	static Fixed	   &max(Fixed &first, Fixed &second);
+	static Fixed		 &max(Fixed &first, Fixed &second);
 	const static Fixed &max(const Fixed &first, const Fixed &second);
 };
 

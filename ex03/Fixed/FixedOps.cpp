@@ -96,6 +96,11 @@ bool Fixed::operator==(const Fixed &other) const
 {
 	return (this->getRawBits() == other.getRawBits());
 }
+
+bool Fixed::operator!=(const Fixed &other) const
+{
+	return (this->getRawBits() != other.getRawBits());
+}
 // NON-MEMBER
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
 {
